@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EnrollmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [ HomeController::class, 'index' ])->name('home');
+
+Route::prefix('app')->group(function(){
+
+    Route::get('/firstpage', [ EnrollmentController::class, 'index'])->name('app.firstpage');
+
+    Route::get('/dashboard', [ EnrollmentController::class, 'dashboard'])->name('app.dashboard');
+
 });
+
+Route::fallback(function() {
+    echo 'Pagina não disponível. <a href="'.route('home').'">Acessa aqui a página principal.</a>';
+});
+
