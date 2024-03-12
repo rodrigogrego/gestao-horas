@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class EnrollmentController extends Controller
 {
     public function index(){
-        return view('firstpage');
+        return view('app.firstpage');
     }
 
     public function dashboard(){
-        return view('dashboard');
+        return view('app.dashboard');
     }
 }

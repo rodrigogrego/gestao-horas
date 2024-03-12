@@ -1,0 +1,301 @@
+{{-- IF - ELSEIF - ELSE --}}
+        {{-- 
+            @if(count($users) > 0 && count($users) < 10)
+                <h3>Existem alguns usuários</h3>
+            @elseif(count($users) >= 10)
+                <h3>Existem vários usuários</h3>
+            @else   
+                <h3>Não existem usuários.</h3>
+
+            @endif
+        --}}
+
+    {{-- UNLESS --}}
+
+        {{-- Usuário: {{$users[0]['name']}}
+        <br>
+        @unless($users[0]['status'] == 1)
+            <h3>Status inativo</h3>
+        @endunless --}}
+
+    {{-- ISSET --}}
+
+        {{-- @isset($users)
+
+            @if(count($users) > 0 && count($users) < 10)
+                <h3>Existem alguns usuários</h3>
+            @elseif(count($users) >= 10)
+                <h3>Existem vários usuários</h3>
+            @else   
+                <h3>Não existem usuários.</h3>
+            @endif
+            <br>
+
+            Usuário: {{$users[0]['name']}}
+            <br>
+            @unless($users[0]['status'] == 1)
+                <h3>Status inativo</h3>
+            @endunless
+        
+        @endisset --}}
+
+    {{-- EMPTY --}} 
+
+        {{-- 
+            - ''
+            - 0 
+            - 0.0
+            - '0'
+            - null
+            - false
+            - array()
+            - $var 
+        --}}
+
+        {{--         
+
+            @isset($users)
+                @if(count($users) > 0 && count($users) < 10)
+                    <h3>Existem alguns usuários</h3>
+                @elseif(count($users) >= 10)
+                    <h3>Existem vários usuários</h3>
+                @else   
+                    <h3>Não existem usuários.</h3>
+                @endif
+                <br>
+                @isset($users[0]['name'])
+                    Usuário: {{ $users[0]['name'] }}
+                    @empty(($users[0]['name']))
+                        Nome vazio
+                    @endempty
+                    <br>
+                @endisset
+                @unless($users[0]['status'] == 1)
+                    <h3>Status inativo</h3>
+                @endunless
+            
+            @endisset 
+        
+        --}}
+
+    {{-- Opeador condicional de valor default ?? --}}
+
+        {{-- @isset($users)
+
+            <h3>{{ $users[0]['name'] ?? 'Nome não existe'}}</h3>
+
+        @endisset --}}
+
+        {{-- 
+            se o valor 'name' existe 
+            ou
+            se o valor 'name' não é nulo
+         --}} 
+
+    {{-- SWITCH CASE --}}
+
+        {{-- @isset($users)
+
+            Usuário: {{ $users[1]['name'] ? $users[1]['name'] : 'Nome não identificado' }}
+            <br>
+            Status: {{ $users[1]['status'] }}
+            <br>
+            Telefone: {{$users[1]['ddd']}} {{$users[1]['telefone'] ?? ''}}
+
+            @switch($users[1]['ddd'])
+                @case('71')
+                    Bahia - BA
+                    @break
+                @case('75')
+                    Feira de Santana
+                    @break
+                @case('11')
+                    São Paulo
+                    @break
+
+                @default
+                    Estado não identificado
+
+                @break
+            @endswitch
+                
+         @endisset --}}
+
+    {{-- FOR --}}
+
+        {{-- @isset($users)
+
+            @for($i = 0; isset($users[$i]); $i++)
+                Usuário: {{ $users[$i]['name'] ? $users[$i]['name'] : 'Nome não identificado' }}
+                <br>
+                Status: {{ $users[$i]['status'] }}
+                <br>
+                Telefone: {{$users[$i]['ddd']}} {{$users[$i]['telefone'] ?? ''}}
+
+                @switch($users[$i]['ddd'])
+                    @case('71')
+                        Bahia - BA
+                        @break
+                    @case('75')
+                        Feira de Santana
+                        @break
+                    @case('11')
+                        São Paulo
+                        @break
+
+                    @default
+                        Estado não identificado
+
+                    @break
+                @endswitch
+                <hr>
+            @endfor
+                
+         @endisset --}}
+
+    {{-- WHILE --}}
+
+        {{-- @isset($users)
+
+
+        @php $i = 0 @endphp
+           @while(isset($users[$i]))
+                Usuário: {{ $users[$i]['name'] ? $users[$i]['name'] : 'Nome não identificado' }}
+                <br>
+                Status: {{ $users[$i]['status'] }}
+                <br>
+                Telefone: {{$users[$i]['ddd']}} {{$users[$i]['telefone'] ?? ''}}
+
+                @switch($users[$i]['ddd'])
+                    @case('71')
+                        Bahia - BA
+                        @break
+                    @case('75')
+                        Feira de Santana
+                        @break
+                    @case('11')
+                        São Paulo
+                        @break
+
+                    @default
+                        Estado não identificado
+
+                    @break
+                @endswitch
+                <hr>
+                @php $i++ @endphp
+            @endwhile
+                
+         @endisset --}}
+
+    {{-- FOREACH --}}
+
+        {{-- @isset($users)
+
+            @foreach($users as $indice => $user)
+                Usuário: {{ $user['name'] ? $user['name'] : 'Nome não identificado' }}
+                <br>
+                Status: {{ $user['status'] }}
+                <br>
+                Telefone: {{$user['ddd']}} {{$user['telefone'] ?? ''}}
+
+                @switch($user['ddd'])
+                    @case('71')
+                        Bahia - BA
+                        @break
+                    @case('75')
+                        Feira de Santana
+                        @break
+                    @case('11')
+                        São Paulo
+                        @break
+
+                    @default
+                        Estado não identificado
+
+                    @break
+                @endswitch
+            <hr>
+            @endforeach
+                
+         @endisset --}}
+
+    {{-- FORELSE --}}
+    
+         {{-- @isset($users)
+
+            @forelse($users as $indice => $user)
+                Usuário: {{ $user['name'] ? $user['name'] : 'Nome não identificado' }}
+                <br>
+                Status: {{ $user['status'] }}
+                <br>
+                Telefone: {{$user['ddd']}} {{$user['telefone'] ?? ''}}
+
+                @switch($user['ddd'])
+                    @case('71')
+                        Bahia - BA
+                        @break
+                    @case('75')
+                        Feira de Santana
+                        @break
+                    @case('11')
+                        São Paulo
+                        @break
+
+                    @default
+                        Estado não identificado
+
+                    @break
+                @endswitch
+            <hr>
+            @empty 
+                Não existem usuários cadastrados!!
+            @endforelse
+                
+         @endisset --}}
+
+    {{-- VARIAVEL LOOP  --}}
+
+        {{-- @isset($users)
+
+            @forelse($users as $indice => $user)
+
+                Interação atual: {{ $loop->iteration }}
+                <br>
+                Usuário: {{ $user['name'] ? $user['name'] : 'Nome não identificado' }}
+                <br>
+                Status: {{ $user['status'] }}
+                <br>
+                Telefone: {{$user['ddd']}} {{$user['telefone'] ?? ''}}
+
+                @switch($user['ddd'])
+                    @case('71')
+                        Bahia - BA
+                        @break
+                    @case('75')
+                        Feira de Santana
+                        @break
+                    @case('11')
+                        São Paulo
+                        @break
+
+                    @default
+                        Estado não identificado
+                    @break
+                @endswitch
+            <br>
+            @if($loop->first)
+                Primeira interação.
+                <br>
+            @endif
+            <br>
+            @if($loop->last)
+                Ultíma interação.
+                <br>
+                Total de registros: {{ $loop->count}}
+            @endif
+            @empty 
+                Não existem usuários cadastrados!!
+            @endforelse
+                
+         @endisset --}}
