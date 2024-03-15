@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contatos', function (Blueprint $table){
+        Schema::create('environments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nome', 50);
-            $table->string('telefone', 20)->nullable();
-            $table->string('email', 80);
-            $table->integer('motivo_contato');
-            $table->text('mensagem');
+            $table->string('name');
+
+            $table->unsignedBigInteger('branch_id');
+
+            //constraint
+            $table->foreign('branch_id')->references('id')->on('branchs');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contatos');
+        Schema::dropIfExists('environments');
     }
 };
