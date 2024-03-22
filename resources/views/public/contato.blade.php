@@ -216,24 +216,29 @@
                 <h1>Entre em contato conosco</h1>
             </div>
 
+            <div>
+                <h3>{{$errors}}</h3>
+            </div>
             <div class="informacao-pagina">
                 <div class="contato-principal">
                     <form action="{{route('contato')}}" method=post>
                     @csrf
-                        <input name="nome" type="text" placeholder="Nome" class="borda-preta">
+                        <input name="nome" type="text" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
                         <br>
-                        <input name="telefone" type="text" placeholder="Telefone" class="borda-preta">
+                        <input name="telefone" type="text" value="{{ old('telefone') }}" placeholder="Telefone" class="borda-preta">
                         <br>
-                        <input name="email" type="text" placeholder="E-mail" class="borda-preta">
+                        <input name="email" type="text" value="{{ old('email') }}" placeholder="E-mail" class="borda-preta">
                         <br>
                         <select name="motivo_contato" class="borda-preta">
-                            <option value="">Qual o motivo do contato?</option>
-                            <option value="1">Dúvida</option>
-                            <option value="2">Elogio</option>
-                            <option value="3">Reclamação</option>
+
+                        <option value="">Qual o motivo do contato?</option>
+                        @foreach($motivo_contatos as $key => $motivo_contato)
+                            <option value="{{$motivo_contato->id}}" {{old('motivo_contato') == $motivo_contato->id ? 'selected' : ''}}>{{ $motivo_contato->motivo_contato }}</option>
+                        @endforeach
+                        
                         </select>
                         <br>
-                        <textarea name="mensagem" class="borda-preta">Preencha aqui a sua mensagem</textarea>
+                        <textarea name="mensagem" class="borda-preta" placeholder="Preencha aqui a sua mensagem">{{ (old('mensagem') !== '') ? old('mensagem') : 'Preencha aqui a mensagem!' }}</textarea>
                         <br>
                         <button type="submit" class="borda-preta">ENVIAR</button>
                     </form>
@@ -257,3 +262,4 @@
         </div>
     </body>
 </html>
+

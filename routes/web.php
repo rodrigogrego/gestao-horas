@@ -22,7 +22,7 @@ Route::get('/', [ HomeController::class, 'index' ])->name('home');
 Route::get('/auth/{login}/{password}', [ HomeController::class, 'authLogin' ])->name('auth');
 
 Route::get('/contato', [ ContatoController::class, 'index'])->name('contato');
-Route::post('/contato', [ ContatoController::class, 'index'])->name('contato');
+Route::post('/contato', [ ContatoController::class, 'store'])->name('contato');
 
 Route::prefix('app')->group(function(){
 

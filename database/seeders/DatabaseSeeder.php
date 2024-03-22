@@ -14,11 +14,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(ContatoSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        $this->call(MotivoContatoSeeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+     
     }
 }
