@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ContatoController;
+use App\Http\Middleware\LogAcessosMiddleware;
 
 
 /*
@@ -17,14 +18,14 @@ use App\Http\Controllers\ContatoController;
 |
 */
 
-Route::get('/', [ HomeController::class, 'index' ])->name('home');
+Route::get('/', [ HomeController::class, 'index' ])->name('home')->middleware(LogAcessosMiddleware::class);
 
 Route::get('/auth/{login}/{password}', [ HomeController::class, 'authLogin' ])->name('auth');
 
 Route::get('/contato', [ ContatoController::class, 'index'])->name('contato');
 Route::post('/contato', [ ContatoController::class, 'store'])->name('contato');
 
-Route::prefix('app')->group(function(){
+Route::middleware('autenticacao')->prefix('app')->group(function(){
 
     Route::get('/firstpage', [ EnrollmentController::class, 'index'])->name('app.firstpage');
 
