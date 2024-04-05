@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 class EnrollmentController extends Controller
 {
     public function index(){
-        return view('app.firstpage');
+
+        $login = $_SESSION['email'];
+        $name = $_SESSION['name'];
+
+        return view('app.firstpage', compact('login', 'name'));
     }
 
     public function dashboard(){

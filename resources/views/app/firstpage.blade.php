@@ -1,6 +1,6 @@
 <h1>FirstPage</h1>
 {{$login}}
-{{$password}}
+{{$name}}
 
 {{-- COMENTARIOS --}}
 
