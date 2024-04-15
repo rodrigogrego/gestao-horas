@@ -11,12 +11,16 @@ class RedefinirSenhaNotification extends Notification
 {
     use Queueable;
     public $token;
+    public $email;
+    public $name;
     /**
      * Create a new notification instance.
      */
-    public function __construct($token)
+    public function __construct($token, $email, $name)
     {
         $this->token = $token;
+        $this->email = $email;
+        $this->name = $name;
     }
 
     /**
@@ -34,16 +38,19 @@ class RedefinirSenhaNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $url = 'http://127.0.0.1:8000/reset/password/'.$this->token;
+        $url = 'http://localhost:8000/password/reset/'.$this->token.'?email='.$this->email;
         $minutes = config('auth.passwords.'.config('auth.defaults.passwords').'.expire');
+        $saudacao = 'Olá, '.$this->name;
 
         return (new MailMessage)
             ->subject('Recuperação da senha')
+            ->greeting($saudacao)
             ->line('Foi solicitado uma recuperação da senha no sistema.')
             ->action('Modificar Senha', $url)
             ->line('Esse link vai expirar em '.$minutes.' minutos' )
-            ->line('Se não foi requisitado, não faça nada.');
-    }
+            ->line('Se não foi requisitado, não faça nada.')
+            ->salutation('Até breve!');
+    }   
 
     /**
      * Get the array representation of the notification.
