@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TarefaModel;
+use App\Models\Tarefa;
 use Illuminate\Http\Request;
 
 class TarefaController extends Controller
@@ -27,7 +27,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefas.create');
     }
 
     /**
@@ -35,38 +35,46 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tarefa' => 'required',
+            'data_limite_conclusao' => 'required'
+        ]);
+
+        $tarefa = Tarefa::create($request->all());
+
+        return redirect()->route('tarefas.show', ['tarefa' => $tarefa->id]);
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(TarefaModel $tarefaModel)
-    {
-        //
+    public function show(Tarefa $tarefa)
+   {
+        dd($tarefa->getAttributes());
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TarefaModel $tarefaModel)
-    {
+    public function edit(Tarefa $tarefa)
+   {
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TarefaModel $tarefaModel)
-    {
+    public function update(Request $request, Tarefa $tarefa)
+   {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TarefaModel $tarefaModel)
-    {
+    public function destroy(Tarefa $tarefa)
+   {
         //
     }
 }
