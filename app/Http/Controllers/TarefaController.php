@@ -21,7 +21,9 @@ class TarefaController extends Controller
     public function index()
     {
         //
-        return 'TESTE';
+        $user_id = auth()->user()->id;
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
+        return view('tarefas.index', ['tarefas' => $tarefas]);
     }
 
     /**
