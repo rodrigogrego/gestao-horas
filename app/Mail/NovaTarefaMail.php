@@ -25,7 +25,7 @@ class NovaTarefaMail extends Mailable
     {
         $this->tarefa = $tarefa->tarefa;
         $this->data_limite_conclusao = date('d/m/Y', strtotime($tarefa->data_limite_conclusao));
-        $this->url = 'http://localhost:8000/tarefas/'.$tarefa->id;
+        $this->url = 'http://127.0.0.1:8000/tarefas/'.$tarefa->id;
     }
     /**
      * Get the message envelope.
