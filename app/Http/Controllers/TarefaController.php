@@ -70,7 +70,7 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
    {
-        //
+        return view('tarefas.edit', ['tarefa' => $tarefa]);
     }
 
     /**
@@ -78,14 +78,26 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
    {
-        //
+        // $request->validate([
+        //     'tarefa' => 'required',
+        //     'data_limite_conclusao' => 'required'
+        // ]);
+
+        //atualizado para
+        //print_r($request->all());
+        $tarefa->update($request->all());
+
+        return redirect()->route('tarefas.index');
+        //era assim
+        //print_r($tarefa->getAttributes());
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Tarefa $tarefa)
-   {
+    {
         //
     }
 }

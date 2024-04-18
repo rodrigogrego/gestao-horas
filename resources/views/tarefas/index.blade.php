@@ -15,6 +15,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Tarefa</th>
                         <th scope="col">Data Limite Conclusao</th>
+                        <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,7 @@
                             <th scope="row">{{$t['id']}}</th>
                             <td>{{$t['tarefa']}}</td>
                             <td>{{date('d/m/Y', strtotime($t['data_limite_conclusao']))}}</td>
+                            <td><a href="{{route('tarefas.edit', $t['id'])}}">Editar</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -34,7 +36,7 @@
                         <a class="page-link" href="{{ $tarefas->previousPageUrl() }}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
-                        </li>
+                        </li>   
                         @for($i = 1; $i <= $tarefas->lastPage();  $i++)
                         <li class="page-item {{ $tarefas->currentPage() == $i ? 'active' : '' }}">
                             <a class="page-link" href="{{ $tarefas->url($i) }}">{{ $i }}</a>
