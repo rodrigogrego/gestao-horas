@@ -62,7 +62,10 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
    {
+
         return view('tarefas.show', ['tarefa' => $tarefa]);
+ 
+            
     }
 
     /**
@@ -70,7 +73,12 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
    {
-        return view('tarefas.edit', ['tarefa' => $tarefa]);
+        $user_id = auth()->user()->id;
+
+        if($tarefa->user_id == $user_id){
+            return view('tarefas.edit', ['tarefa' => $tarefa]);
+        }
+        return view('acesso-negado');
     }
 
     /**
