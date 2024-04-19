@@ -14,9 +14,7 @@ use App\Mail\MensagemTesteMail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function(){
-    return view('auth.login');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 
 Auth::routes(['verify' => true]);
